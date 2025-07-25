@@ -1,0 +1,6 @@
+.venv
+logs
+tmp
+uploads
+dist
+.env

@@ -1,0 +1,28 @@
+name: "module-name"
+
+services:
+  app:
+    build: .
+    image: module:latest
+    ports:
+      - "3004:3000"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+    # depends_on:
+      # mongodb:
+      #   condition: service_healthy
+    env_file:
+      - .env
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 2048M
+        reservations:
+          cpus: '0.5'
+          memory: 1024M
+          
